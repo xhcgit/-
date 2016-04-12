@@ -60,6 +60,7 @@ QT_END_NAMESPACE
 class Console;
 class SettingsDialog;
 class ShowData;
+class FindData;
 
 class MainWindow : public QMainWindow
 {
@@ -69,9 +70,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+    void insertIntoDB(int value);
+
 public slots:
     void debugPrint();
-    void writeDataToSerialPore(int i);
 
 private slots:
     void openSerialPort();
@@ -85,6 +88,8 @@ private slots:
 
     void on_actionShowData_triggered();
 
+    void on_actionFindData_triggered();
+
 private:
     void initActionsConnections();
 
@@ -95,6 +100,7 @@ private:
     QLabel *status;
     Console *console;
     ShowData *showData;
+    FindData *findData;
     SettingsDialog *settings;
     QSerialPort *serial;
 };

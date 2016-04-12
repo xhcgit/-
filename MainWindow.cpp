@@ -33,10 +33,11 @@
 ****************************************************************************/
 
 #include "MainWindow.h"
-#include "ui_mainwindow.h"
+#include "ui_MainWindow.h"
 #include "Console.h"
 #include "SettingsDialog.h"
 #include "ShowData.h"
+#include "FindData.h"
 
 #include <QMessageBox>
 #include <QLabel>
@@ -62,6 +63,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     showData = new ShowData;
 
+    findData = new FindData;
+
     ui->actionConnect->setEnabled(true);
     ui->actionDisconnect->setEnabled(false);
     ui->actionQuit->setEnabled(true);
@@ -79,6 +82,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(serial, SIGNAL(readyRead()), this, SLOT(readData()));
 
     connect(console, SIGNAL(getData(QByteArray)), this, SLOT(writeData(QByteArray)));
+
+    connect(this, SIGNAL(insertIntoDB(int)), showData, SLOT(slotInsertIntoDB(int)));
 
     //QDateTime dateTime = QDateTime::currentDateTime();
    // QString str = dateTime.toString();
@@ -120,6 +125,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete settings;
+    delete showData;
+    delete findData;
     delete ui;
 }
 
@@ -127,12 +134,6 @@ void MainWindow::debugPrint()
 {
     qDebug() << "time out";
 }
-
-void MainWindow::writeDataToSerialPore(int i)
-{
-    qDebug() << i;
-}
-
 void MainWindow::openSerialPort()
 {
     SettingsDialog::Settings p = settings->settings();
@@ -152,8 +153,6 @@ void MainWindow::openSerialPort()
         showStatusMessage(tr("Connected to %1 : %2, %3, %4, %5, %6")
                           .arg(p.name).arg(p.stringBaudRate).arg(p.stringDataBits)
                           .arg(p.stringParity).arg(p.stringStopBits).arg(p.stringFlowControl));
-        //serial->write("AT+CIPMUX=1\n");
-
     }
     else
     {
@@ -191,7 +190,22 @@ void MainWindow::writeData(const QByteArray &data)
 
 void MainWindow::readData()
 {
-    QByteArray data = serial->readAll();
+    QByteArray data = serial->readAll();   
+    if(data.startsWith("\r\n+IPD"))
+    {
+        if(data.length() > 16)
+            return;
+        QList<QByteArray> list = data.split(':');
+        int value = list.at(1).toInt();
+        if(list.at(0).split(',').at(2).toInt() > 0 &&
+                list.at(0).split(',').at(2).toInt() < 5)
+        {
+            qDebug() << value;
+            emit insertIntoDB(value);
+        }
+        else
+            return;
+    }
     console->putData(data);
 }
 
@@ -215,7 +229,6 @@ void MainWindow::creatServer()
     QTimer::singleShot(1000, &eventloop, SLOT(quit()));
     eventloop.exec();
     serial->write(CIPSERVER);
-
 }
 
 
@@ -240,4 +253,9 @@ void MainWindow::showStatusMessage(const QString &message)
 void MainWindow::on_actionShowData_triggered()
 {
     showData->show();
+}
+
+void MainWindow::on_actionFindData_triggered()
+{
+    findData->show();
 }

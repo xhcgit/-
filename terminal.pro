@@ -8,18 +8,21 @@ SOURCES += \
     ShowData.cpp \
     SettingsDialog.cpp \
     Console.cpp \
-    MainWindow.cpp
+    MainWindow.cpp \
+    FindData.cpp
 
 HEADERS += \
     ShowData.h \
     SettingsDialog.h \
     Console.h \
-    MainWindow.h
+    MainWindow.h \
+    FindData.h
 
 FORMS += \
     ShowData.ui \
+    SettingsDialog.ui \
     MainWindow.ui \
-    SettingsDialog.ui
+    FindData.ui
 
 RESOURCES += \
     terminal.qrc
