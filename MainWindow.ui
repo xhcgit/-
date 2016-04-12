@@ -40,6 +40,7 @@
     </property>
     <addaction name="actionConfigure"/>
     <addaction name="actionClear"/>
+    <addaction name="actionShowData"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -56,7 +57,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionConnect"/>
    <addaction name="actionDisconnect"/>
@@ -83,7 +84,7 @@
   </action>
   <action name="actionConnect">
    <property name="icon">
-    <iconset resource="terminal.qrc">
+    <iconset>
      <normaloff>:/images/connect.png</normaloff>:/images/connect.png</iconset>
    </property>
    <property name="text">
@@ -98,7 +99,7 @@
   </action>
   <action name="actionDisconnect">
    <property name="icon">
-    <iconset resource="terminal.qrc">
+    <iconset>
      <normaloff>:/images/disconnect.png</normaloff>:/images/disconnect.png</iconset>
    </property>
    <property name="text">
@@ -113,7 +114,7 @@
   </action>
   <action name="actionConfigure">
    <property name="icon">
-    <iconset resource="terminal.qrc">
+    <iconset>
      <normaloff>:/images/settings.png</normaloff>:/images/settings.png</iconset>
    </property>
    <property name="text">
@@ -128,7 +129,7 @@
   </action>
   <action name="actionClear">
    <property name="icon">
-    <iconset resource="terminal.qrc">
+    <iconset>
      <normaloff>:/images/clear.png</normaloff>:/images/clear.png</iconset>
    </property>
    <property name="text">
@@ -143,7 +144,7 @@
   </action>
   <action name="actionQuit">
    <property name="icon">
-    <iconset resource="terminal.qrc">
+    <iconset>
      <normaloff>:/images/application-exit.png</normaloff>:/images/application-exit.png</iconset>
    </property>
    <property name="text">
@@ -155,7 +156,7 @@
   </action>
   <action name="actionServer">
    <property name="icon">
-    <iconset resource="terminal.qrc">
+    <iconset>
      <normaloff>:/images/server.png</normaloff>:/images/server.png</iconset>
    </property>
    <property name="text">
@@ -168,10 +169,13 @@
     <string>Alt+S</string>
    </property>
   </action>
+  <action name="actionShowData">
+   <property name="text">
+    <string>ShowData</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="terminal.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

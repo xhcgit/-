@@ -32,10 +32,11 @@
 **
 ****************************************************************************/
 
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include "ui_mainwindow.h"
-#include "console.h"
-#include "settingsdialog.h"\
+#include "Console.h"
+#include "SettingsDialog.h"
+#include "ShowData.h"
 
 #include <QMessageBox>
 #include <QLabel>
@@ -44,7 +45,6 @@
 #include <QDebug>
 #include <QSqlError>
 #include <QSqlQuery>
-#include <QSqlTableModel>
 #include <QSqlRecord>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -59,6 +59,8 @@ MainWindow::MainWindow(QWidget *parent) :
     serial = new QSerialPort(this);
 
     settings = new SettingsDialog;
+
+    showData = new ShowData;
 
     ui->actionConnect->setEnabled(true);
     ui->actionDisconnect->setEnabled(false);
@@ -78,27 +80,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(console, SIGNAL(getData(QByteArray)), this, SLOT(writeData(QByteArray)));
 
-    //open database
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("localhost");
-    db.setPort(3306);
-    db.setDatabaseName("AlcoholValue");
-    db.setUserName("root");
-    db.setPassword("19950616");
-    if(db.open())
-    {
-        qDebug() << "open database succeed";
-    }
-    else
-        qDebug() << db.lastError().text();
     //QDateTime dateTime = QDateTime::currentDateTime();
    // QString str = dateTime.toString();
     //插入数据
     //db.exec("insert into ValueFromSerialport(receiveTime, alcoholValue) values('2016-4-12 11:19:25', '213')");
 
     //数据库查询
-    QSqlTableModel model;
+    /*QSqlTableModel model;
     model.setTable("ValueFromSerialport");
+    //设置select条件，字符串加单引号
+    //model.setFilter();
     model.select();  // exec query
     int ret = model.rowCount();
     // read data from database
@@ -115,11 +106,14 @@ MainWindow::MainWindow(QWidget *parent) :
     //model.submitAll();
 
     //插入数据
-    /*QSqlRecord record = model.record();
-    record.setValue("receiveTime", "2016-4-12 11:29:50");
+    QString strDate = QDateTime::currentDateTime().toString();
+    QSqlRecord record = model.record();
+    record.setValue("receiveTime", QVariant(QDateTime::currentDateTime()));
     record.setValue("alcoholValue", 300);
     model.insertRecord(-1, record);  //-1表示最后一行
-    model.submitAll();*/
+    if(!model.submitAll())
+        qDebug() << "tablemodel submit error!";*/
+
 }
 
 
@@ -242,3 +236,8 @@ void MainWindow::showStatusMessage(const QString &message)
     status->setText(message);
 }
 
+
+void MainWindow::on_actionShowData_triggered()
+{
+    showData->show();
+}

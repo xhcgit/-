@@ -44,7 +44,8 @@
 #include <QTimer>
 #include <QString>
 #include <QSqlDatabase>
-//#include <QtSql>
+#include <QSqlTableModel>
+#include <QTableView>
 
 QT_BEGIN_NAMESPACE
 
@@ -58,6 +59,7 @@ QT_END_NAMESPACE
 
 class Console;
 class SettingsDialog;
+class ShowData;
 
 class MainWindow : public QMainWindow
 {
@@ -81,6 +83,8 @@ private slots:
 
     void creatServer();
 
+    void on_actionShowData_triggered();
+
 private:
     void initActionsConnections();
 
@@ -90,9 +94,9 @@ private:
     Ui::MainWindow *ui;
     QLabel *status;
     Console *console;
+    ShowData *showData;
     SettingsDialog *settings;
     QSerialPort *serial;
-    QSqlDatabase db;
 };
 
 #endif // MAINWINDOW_H

@@ -33,13 +33,35 @@
 ****************************************************************************/
 
 #include <QApplication>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QDebug>
 
-#include "mainwindow.h"
+#include "MainWindow.h"
 
+void openDB();
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    openDB();
     MainWindow w;
-    w.show();
+    w.show(); 
     return a.exec();
+}
+
+void openDB()
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName("localhost");
+    db.setPort(3306);
+    db.setDatabaseName("AlcoholValue");
+    db.setUserName("root");
+    db.setPassword("19950616");
+    if(db.open())
+    {
+        qDebug() << "open database succeed";
+    }
+    else
+        qDebug() << db.lastError().text();
+
 }

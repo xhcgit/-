@@ -5,18 +5,21 @@ TEMPLATE = app
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp \
-    settingsdialog.cpp \
-    console.cpp
+    ShowData.cpp \
+    SettingsDialog.cpp \
+    Console.cpp \
+    MainWindow.cpp
 
 HEADERS += \
-    mainwindow.h \
-    settingsdialog.h \
-    console.h
+    ShowData.h \
+    SettingsDialog.h \
+    Console.h \
+    MainWindow.h
 
 FORMS += \
-    mainwindow.ui \
-    settingsdialog.ui
+    ShowData.ui \
+    MainWindow.ui \
+    SettingsDialog.ui
 
 RESOURCES += \
     terminal.qrc
