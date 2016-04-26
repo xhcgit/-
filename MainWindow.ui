@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Simple Terminal</string>
+   <string>酒精浓度监测平台</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout"/>
@@ -53,6 +53,7 @@
     </property>
     <addaction name="actionShowData"/>
     <addaction name="actionFindData"/>
+    <addaction name="actionPaintData"/>
    </widget>
    <addaction name="menuCalls"/>
    <addaction name="menuTools"/>
@@ -186,8 +187,15 @@
     <string>FindData</string>
    </property>
   </action>
+  <action name="actionPaintData">
+   <property name="text">
+    <string>PaintData</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="terminal.qrc"/>
+ </resources>
  <connections/>
 </ui>

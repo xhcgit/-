@@ -38,6 +38,7 @@
 #include "SettingsDialog.h"
 #include "ShowData.h"
 #include "FindData.h"
+#include "PaintData.h"
 
 #include <QMessageBox>
 #include <QLabel>
@@ -64,6 +65,8 @@ MainWindow::MainWindow(QWidget *parent) :
     showData = new ShowData;
 
     findData = new FindData;
+
+    paintData = new PaintData;
 
     ui->actionConnect->setEnabled(true);
     ui->actionDisconnect->setEnabled(false);
@@ -127,6 +130,7 @@ MainWindow::~MainWindow()
     delete settings;
     delete showData;
     delete findData;
+    delete paintData;
     delete ui;
 }
 
@@ -258,4 +262,9 @@ void MainWindow::on_actionShowData_triggered()
 void MainWindow::on_actionFindData_triggered()
 {
     findData->show();
+}
+
+void MainWindow::on_actionPaintData_triggered()
+{
+    paintData->show();
 }

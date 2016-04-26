@@ -20,8 +20,6 @@ public:
 private slots:
     void on_ButtonCancel_clicked();
 
-    void on_ButtonSubmit_clicked();
-
 private:
     Ui::ShowData *ui;
     QSqlTableModel* model;

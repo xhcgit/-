@@ -46,10 +46,6 @@ void ShowData::on_ButtonCancel_clicked()
     hide();
 }
 
-void ShowData::on_ButtonSubmit_clicked()
-{
-    model->submitAll();
-}
 
 void ShowData::slotInsertIntoDB(int value)
 {

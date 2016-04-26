@@ -49,8 +49,10 @@ void FindData::on_pushButton_clicked()
     queryModel->query();*/
 
     QSqlQuery query;
-    QString today = ui->dateEdit->date().toString("yyyy-MM-dd");
-    QString nextDay = ui->dateEdit->date().addDays(1).toString();
+    QDateTime todayDateTime(ui->dateEdit->date());
+    QDateTime nextdayDateTime(ui->dateEdit->date().addDays(1));
+    QString today = todayDateTime.toString("yyyy-MM-dd-HH:mm:ss");
+    QString nextDay = nextdayDateTime.toString("yyyy-MM-dd-HH:mm:ss");
 
     queryModel->setQuery(QString("select * from ValueFromSerialport where receiveTime > '%1' and receiveTime < '%2' ")
                          .arg(today).arg(nextDay));

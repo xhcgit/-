@@ -61,6 +61,7 @@ class Console;
 class SettingsDialog;
 class ShowData;
 class FindData;
+class PaintData;
 
 class MainWindow : public QMainWindow
 {
@@ -90,6 +91,8 @@ private slots:
 
     void on_actionFindData_triggered();
 
+    void on_actionPaintData_triggered();
+
 private:
     void initActionsConnections();
 
@@ -101,6 +104,7 @@ private:
     Console *console;
     ShowData *showData;
     FindData *findData;
+    PaintData *paintData;
     SettingsDialog *settings;
     QSerialPort *serial;
 };
