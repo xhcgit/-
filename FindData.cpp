@@ -24,29 +24,6 @@ FindData::~FindData()
 //查询当天的数据
 void FindData::on_pushButton_clicked()
 {
-    /*QDate date = ui->dateEdit->date();
-    QString strDate = date.toString("yyyy-MM-dd");
-
-    QSqlQuery query;
-    QString str = "2016-04-13";
-    //QDateTime dt;
-    //dt = QDateTime::fromString(str,"yyyy-MM-dd-HH:mm:ss");
-    //qDebug() << dt;
-    query.prepare("select * from ValueFromSerialport where receiveTime > :str");
-    query.bindValue(":str",str);
-    query.exec();
-    while(query.next())
-    {
-        qDebug() << query.value(0);
-    }*/
-
-   /* QSqlQuery query;
-    QDate date = ui->dateEdit->date();
-    QString str = date.toString("yyyy-MM-dd");
-    query.prepare("select * from ValueFromSerialport where receiveTime > :str");
-    query.bindValue(":str",str);
-    queryModel->setQuery(query);
-    queryModel->query();*/
 
     QSqlQuery query;
     QDateTime todayDateTime(ui->dateEdit->date());
