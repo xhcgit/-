@@ -34,3 +34,5 @@ DEFINES += QT_DLL QWT_DLL
 LIBS += -L"C:\Qt\Qt5.6.0\5.6\mingw49_32\lib" -lqwtd
 LIBS += -L"C:\Qt\Qt5.6.0\5.6\mingw49_32\lib" -lqwt
 INCLUDEPATH += C:\Qt\Qt5.6.0\5.6\mingw49_32\include\Qwt
+
+RC_FILE = Alcohol.rc

@@ -19,8 +19,12 @@ signals:
     void queryEnd();
 
 private slots:
-    void on_pushButton_clicked();
-    void beginPaintData();
+
+    void on_showAllDay_clicked();
+
+    void on_showTime_clicked();
+
+    void on_showHour_clicked();
 
 private:
     Ui::PaintData *ui;

@@ -35,5 +35,5 @@ void FindData::on_pushButton_clicked()
                          .arg(today).arg(nextDay));
     queryModel->query();
     queryModel->setHeaderData(0, Qt::Horizontal, "时间");
-    queryModel->setHeaderData(1, Qt::Horizontal, "酒精值");
+    queryModel->setHeaderData(1, Qt::Horizontal, "酒精浓度值 mg/100ml");
 }

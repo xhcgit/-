@@ -74,9 +74,6 @@ public:
 signals:
     void insertIntoDB(int value);
 
-public slots:
-    void debugPrint();
-
 private slots:
     void openSerialPort();
     void closeSerialPort();

@@ -35,6 +35,7 @@
 #include <QApplication>
 #include <QSqlDatabase>
 #include <QSqlError>
+#include <QMessageBox>
 #include <QDebug>
 
 #include "MainWindow.h"
@@ -42,11 +43,11 @@
 void openDB();
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
     openDB();
     MainWindow w;
     w.show(); 
-    return a.exec();
+    return app.exec();
 }
 
 void openDB()
@@ -57,11 +58,11 @@ void openDB()
     db.setDatabaseName("AlcoholValue");
     db.setUserName("root");
     db.setPassword("19950616");
-    if(db.open())
+    if(!db.open())
     {
-        qDebug() << "open database succeed";
+        QMessageBox box;
+        box.setWindowTitle("错误");
+        box.setText("打开数据库失败");
+        box.exec();
     }
-    else
-        qDebug() << db.lastError().text();
-
 }

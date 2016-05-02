@@ -4,7 +4,6 @@
 #include <QSqlRecord>
 #include <QVBoxLayout>
 #include <QDateTime>
-#include <QDebug>
 #include <QSqlQuery>
 
 
@@ -18,7 +17,7 @@ ShowData::ShowData(QWidget *parent) :
     model->select();
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->setHeaderData(0, Qt::Horizontal, "时间");
-    model->setHeaderData(1, Qt::Horizontal, "酒精值");
+    model->setHeaderData(1, Qt::Horizontal, "酒精浓度值 mg/100ml");
     ui->tableView->setModel(model);
 }
 
@@ -30,18 +29,4 @@ ShowData::~ShowData()
 void ShowData::on_ButtonCancel_clicked()
 {
     hide();
-}
-
-
-void ShowData::slotInsertIntoDB(int value)
-{
-    //插入数据
-    QSqlRecord record = model->record();
-    record.setValue("receiveTime", QVariant(QDateTime::currentDateTime().toString("yyyy-MM-dd-HH:mm:ss")));
-    record.setValue("alcoholValue", value);
-    model->insertRecord(-1, record);  //-1表示最后一行
-    if(!model->submitAll())
-        qDebug() << "tablemodel submit error!";
-    else
-        qDebug() << "insert success!";
 }

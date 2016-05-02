@@ -24,9 +24,6 @@ private:
     Ui::ShowData *ui;
     QSqlTableModel* model;
     QTableView* view;
-    //QSqlQueryModel* queryModel;
-public slots:
-    void slotInsertIntoDB(int value);
 };
 
 #endif // SHOWDATA_H

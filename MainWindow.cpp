@@ -133,11 +133,6 @@ MainWindow::~MainWindow()
     delete paintData;
     delete ui;
 }
-
-void MainWindow::debugPrint()
-{
-    qDebug() << "time out";
-}
 void MainWindow::openSerialPort()
 {
     SettingsDialog::Settings p = settings->settings();
@@ -189,7 +184,6 @@ void MainWindow::about()
 void MainWindow::writeData(const QByteArray &data)
 {
     serial->write(data);
-    qDebug()<< "QByteArray Version";
 }
 
 void MainWindow::readData()
@@ -204,7 +198,6 @@ void MainWindow::readData()
         if(list.at(0).split(',').at(2).toInt() > 0 &&
                 list.at(0).split(',').at(2).toInt() < 5)
         {
-            qDebug() << value;
             emit insertIntoDB(value);
         }
         else

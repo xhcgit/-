@@ -52,7 +52,6 @@ Console::Console(QWidget *parent)
 
 void Console::putData(const QByteArray &data)
 {
-    //QList<QByteArray> list = data
     insertPlainText(QString(data));
 
     QScrollBar *bar = verticalScrollBar();
