@@ -17,6 +17,8 @@ public:
     explicit ShowData(QWidget *parent = 0);
     ~ShowData();
 
+public slots:
+    void slotInsertIntoDB(int value);
 private slots:
     void on_ButtonCancel_clicked();
 
